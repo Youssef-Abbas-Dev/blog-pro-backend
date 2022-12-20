@@ -102,7 +102,7 @@ module.exports.profilePhotoUploadCtrl = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
 
   // 5. Delete the old profile photo if exist
-  if (user.profilePhoto.publicId !== null) {
+  if (user.profilePhoto?.publicId !== null) {
     await cloudinaryRemoveImage(user.profilePhoto.publicId);
   }
 
