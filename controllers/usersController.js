@@ -29,7 +29,10 @@ module.exports.getAllUsersCtrl = asyncHandler(async (req, res) => {
  * @access  public
  ------------------------------------------------*/
 module.exports.getUserProfileCtrl = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id).select("-password").populate("posts");
+  const user = await User.findById(req.params.id)
+   .select("-password")
+   .populate("posts");
+
   if (!user) {
     return res.status(404).json({ message: "user not found" });
   }
@@ -148,8 +151,10 @@ module.exports.deleteUserProfileCtrl = asyncHandler(async (req, res) => {
   }
 
   // 5. Delete the profile picture from cloudinary
-  await cloudinaryRemoveImage(user.profilePhoto.publicId);
-
+  if(user.profilePhoto.publicId !== null) {
+    await cloudinaryRemoveImage(user.profilePhoto.publicId);
+  }
+  
   // 6. Delete user posts & comments
   await Post.deleteMany({ user: user._id });
   await Comment.deleteMany({ user: user._id });
