@@ -57,11 +57,9 @@ module.exports.registerUserCtrl = asyncHandler(async (req, res) => {
   await sendEmail(user.email, "Verify Your Email", htmlTemplate);
 
   // Response to the client
-  res
-    .status(201)
-    .json({
-      message: "We sent to you an email, please verify your email address",
-    });
+  res.status(201).json({
+    message: "We sent to you an email, please verify your email address",
+  });
 });
 
 /**-----------------------------------------------
@@ -112,11 +110,9 @@ module.exports.loginUserCtrl = asyncHandler(async (req, res) => {
 
     await sendEmail(user.email, "Verify Your Email", htmlTemplate);
 
-    return res
-      .status(400)
-      .json({
-        message: "We sent to you an email, please verify your email address",
-      });
+    return res.status(400).json({
+      message: "We sent to you an email, please verify your email address",
+    });
   }
 
   const token = user.generateAuthToken();

@@ -35,7 +35,8 @@ module.exports.sendResetPasswordLinkCtrl = asyncHandler(async (req,res) => {
     verificationToken = new VerificationToken({
         userId: user._id,
         token: crypto.randomBytes(32).toString("hex"),
-    })
+    });
+    await verificationToken.save();
    }
 
    // 4. Creating link
