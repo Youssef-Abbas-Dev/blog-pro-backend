@@ -35,7 +35,7 @@ app.use(rateLimiting({
 
  // Cors Policy
  app.use(cors({
-   origin: "https://main--blogyoussef.netlify.app"
+   origin: "https://blogyoussef.netlify.app"
  }));
 
 // Routes
