@@ -33,12 +33,10 @@ app.use(rateLimiting({
   max:200,
 }));
 
-if(process.env.NODE_ENV === "development") {
  // Cors Policy
  app.use(cors({
-   origin: "http://localhost:3000"
+   origin: "https://main--blogyoussef.netlify.app"
  }));
-}
 
 // Routes
 app.use("/api/auth", require("./routes/authRoute"));
