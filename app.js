@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const connectToDb = require("./config/connectToDb");
 const xss = require("xss-clean");
 const rateLimiting = require("express-rate-limit");
@@ -33,10 +32,8 @@ app.use(rateLimiting({
   max:200,
 }));
 
- // Cors Policy
- app.use(cors({
-   origin: "https://blogyoussef.netlify.app"
- }));
+// Cors Policy
+app.use(cors()); 
 
 // Routes
 app.use("/api/auth", require("./routes/authRoute"));
@@ -50,13 +47,6 @@ app.use("/api/password",require("./routes/passwordRoute"));
 app.use(notFound);
 app.use(errorHandler);
 
-// Static Folder
-app.use(express.static(path.join(__dirname, "build")));
-
-// Client
-app.get("*", (req,res) => {
-  res.sendFile(path.join(__dirname, "build","index.html"));
-});
 
 // Running The Server
 const PORT = process.env.PORT || 8000;
