@@ -33,7 +33,9 @@ app.use(rateLimiting({
 }));
 
 // Cors Policy
-app.use(cors()); 
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
 
 // Routes
 app.use("/api/auth", require("./routes/authRoute"));
@@ -42,6 +44,7 @@ app.use("/api/posts", require("./routes/postsRoute"));
 app.use("/api/comments", require("./routes/commentsRoute"));
 app.use("/api/categories", require("./routes/categoriesRoute"));
 app.use("/api/password",require("./routes/passwordRoute"));
+
 
 // Error Handler Middleware
 app.use(notFound);

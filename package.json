@@ -4,8 +4,7 @@
   "description": "backend of blog application",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app",
-    "start": "node app.js"
+    "dev": "nodemon app"
   },
   "author": "Youssef Abbas",
   "license": "ISC",
